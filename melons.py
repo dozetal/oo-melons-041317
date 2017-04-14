@@ -53,6 +53,7 @@ class InternationalMelonOrder(AbstractMelonOrder):
 
         self.country_code = country_code
 
+
     """Initialize melon order attributes."""
 
     def get_country_code(self):
