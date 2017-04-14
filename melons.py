@@ -9,14 +9,14 @@ Classes for melon orders.
 class AbstractMelonOrder(object):
     """ A melon order from ______."""
 
-    def __init__(self, species, qty):
+    def __init__(self, species, qty, tax, order_type):
         """Initialize melon order attributes."""
 
         self.species = species
         self.qty = qty
         self.shipped = False
-        self.tax = 0
-        # self.order_type = "abstract"
+        self.tax = tax
+        self.order_type = order_type
 
     def get_total(self):
         """Calculate price, including tax."""
@@ -37,10 +37,8 @@ class DomesticMelonOrder(AbstractMelonOrder):
     """A melon order within the USA."""
 
     # Default for domestic orders
-    def __init__(self, order_type):
-        super(DomesticMelonOrder, self).__init__(order_type, "domestic")
-
-        self.tax = 0.08
+    def __init__(self, species, qty):
+        super(DomesticMelonOrder, self).__init__(species, qty, 0.08, "domestic")
 
     """Initialize melon order attributes."""
 
@@ -50,11 +48,10 @@ class InternationalMelonOrder(AbstractMelonOrder):
     """An international (non-US) melon order."""
 
     # Default for international orders
-    def __init__(self, order_type):
-        super(InternationalMelonOrder, self).__init__(order_type, "international")
+    def __init__(self, species, qty, country_code):
+        super(InternationalMelonOrder, self).__init__(species, qty, 0.17, "international")
 
         self.country_code = country_code
-        self.tax = 0.17
 
     """Initialize melon order attributes."""
 
